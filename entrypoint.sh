@@ -1,6 +1,6 @@
 #!/bin/bash
 
-workdir="/github/workspace/"
+workdir="/github/workspace"
 cmd=" --requirements \"${workdir}/$1\""
 
 if [ ! -z "$2" ] ; then
