@@ -1,5 +1,7 @@
 FROM pilosus/pip-license-checker:0.14.0
 
-COPY entrypoint.sh /entrypoint.sh
+WORKDIR /usr/src/app
+COPY entrypoint.sh /usr/src/app/
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
+#CMD ["./entrypoint.sh"]
