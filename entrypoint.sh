@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cmd=" --requirements \"./$1\""
+workdir="/github/workspace/"
+cmd=" --requirements \"${workdir}/$1\""
 
 if [ ! -z "$2" ] ; then
     cmd="${cmd} --fail \"$2\""
@@ -25,15 +26,6 @@ fi
 if [ ! -z "$7" ] ; then
     cmd="${cmd} --table-headers"
 fi
-
-
-echo "pwd"
-pwd
-echo ""
-
-echo "ls ./"
-ls -ltha ./
-echo ""
 
 echo "Running command: java -jar /usr/src/app/app.jar ${cmd}"
 report=$( java -jar /usr/src/app/app.jar $cmd)
