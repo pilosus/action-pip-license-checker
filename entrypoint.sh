@@ -1,4 +1,4 @@
-#!/bin/bash -l
+#!/bin/bash
 
 workdir="/github/workspace"
 cmd="--requirements ${workdir}/$1"
