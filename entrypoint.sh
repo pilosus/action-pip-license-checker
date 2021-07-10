@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -o pipefail
 
 workdir="/github/workspace"
 cmd="--requirements ${workdir}/$1"
