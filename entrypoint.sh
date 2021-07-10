@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eo pipefail
+
 workdir="/github/workspace"
 cmd="--requirements ${workdir}/$1"
 
