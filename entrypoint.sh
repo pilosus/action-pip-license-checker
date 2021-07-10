@@ -1,14 +1,14 @@
 #!/bin/bash
 
 workdir="/github/workspace"
-cmd=" --requirements '${workdir}/$1'"
+cmd=" --requirements ${workdir}/$1"
 
 if [ ! -z "$2" ] ; then
-    cmd="${cmd} --fail '$2'"
+    cmd="${cmd} --fail $2"
 fi
 
 if [ ! -z "$3" ] ; then
-    cmd="${cmd} --exclude '$3'"
+    cmd="${cmd} --exclude $3"
 fi
 
 if [ ! -z "$4" ] ; then
