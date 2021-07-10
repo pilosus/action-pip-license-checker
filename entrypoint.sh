@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -o pipefail
-
 workdir="/github/workspace"
 cmd="--requirements ${workdir}/$1"
 
@@ -31,4 +29,11 @@ fi
 
 echo "Running command: java -jar /usr/src/app/app.jar ${cmd}"
 report=$( java -jar /usr/src/app/app.jar $cmd)
+status=$?
 echo "::set-output name=report::$report"
+
+if [ "$status" -eq "0" ] ; then
+  exit 0
+else
+  exit 1
+fi
