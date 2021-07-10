@@ -2,7 +2,7 @@
 
 Check Python PyPI package license with
 [pip-license-check](https://github.com/pilosus/pip-license-checker)
-tool.
+tool in GitHub Actions.
 
 ## Example usage
 
@@ -13,15 +13,15 @@ jobs:
 
     steps:
     - name: Checkout the code
-      uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+      uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
     - name: Check Python deps licenses
-      uses: pilosus/action-pip-license-checker@v0.1.0
+      uses: pilosus/action-pip-license-checker@v0.1.1
       with:
         requirements: 'requirements.txt'
         fail: 'Copyleft'
-        exclude: 'ipython.*'
+        exclude: 'aio.*'
         with-totals: true
         table-headers: true
 ```
@@ -71,3 +71,12 @@ Print table headers for detailed list of the packages.
 ### `report`
 
 Formatted plain text representation of the license check.
+
+
+## Disclaimer
+
+Software is provided on an "as-is" basis and makes no warranties
+regarding any information provided through it, and disclaims liability
+for damages resulting from using it. Using the software does not
+constitute legal advice nor does it create an attorney-client
+relationship.

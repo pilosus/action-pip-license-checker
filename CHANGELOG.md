@@ -9,7 +9,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [v0.1.1] - 2021-07-10
 ### Added
-- Changelog added
+- Changelog
+- Readme disclaimer section
 
 ### Fixed
 - Multiline output string formatting fixed as per the [workaround](https://github.community/t/set-output-truncates-multiline-strings/16852)
