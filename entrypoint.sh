@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cmd=" --requirements \"/volume/$1\""
+cmd=" --requirements \"./$1\""
 
 if [ ! -z "$2" ] ; then
     cmd="${cmd} --fail \"$2\""
@@ -22,18 +22,21 @@ if [ ! -z "$6" ] ; then
     cmd="${cmd} --totals-only"
 fi
 
-if [ ! -z "$6" ] ; then
+if [ ! -z "$7" ] ; then
     cmd="${cmd} --table-headers"
 fi
+
+
+echo "pwd"
+pwd
+echo ""
 
 echo "ls ./"
 ls -ltha ./
 echo ""
 
-echo "ls /github"
-ls -lthaR /github/
-echo ""
+echo "Running command: java -jar /usr/src/app/app.jar ${cmd}"
+report=$( java -jar /usr/src/app/app.jar $cmd)
 
-echo "Running command: java -jar app.jar ${cmd}"
-report=$( java -jar app.jar $cmd)
+echo $report
 echo "::set-output name=report::$report"

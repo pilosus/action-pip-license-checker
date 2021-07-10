@@ -37,6 +37,7 @@ runs:
   args:
     - ${{ inputs.requirements }}
     - ${{ inputs.fail }}
+    - ${{ inputs.exclude }}
     - ${{ inputs.pre }}
     - ${{ inputs.with-totals }}
     - ${{ inputs.totals-only }}
