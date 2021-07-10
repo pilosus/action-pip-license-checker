@@ -1,0 +1,43 @@
+# action.yml
+name: 'Python dependencies license check'
+author: 'Vitaly R. Samigullin'
+description: 'Check Python PyPI package license'
+branding:
+  icon: 'check-circle'
+  color: 'green'
+inputs:
+  requirements:
+    description: 'Path to requirements file'
+    required: true
+    default: 'requirements.txt'
+  fail:
+    description: 'Return non-zero exit code if license type is found'
+    required: false
+  exclude:
+    description: 'PCRE to exclude matching packages'
+    required: false
+  pre:
+    description: 'Include pre-release and development versions'
+    required: false
+  with-totals:
+    description: 'Print totals for license types'
+    required: false
+  totals-only:
+    description: 'Print only totals for license types'
+    required: false
+  table-headers:
+    description: 'Print table headers'
+    required: false
+outputs:
+  report:
+    description: 'License check report'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.requirements }}
+    - ${{ inputs.fail }}
+    - ${{ inputs.pre }}
+    - ${{ inputs.with-totals }}
+    - ${{ inputs.totals-only }}
+    - ${{ inputs.table-headers }}
