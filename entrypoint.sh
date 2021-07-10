@@ -1,17 +1,13 @@
-#!/bin/sh -l
+#!/bin/bash
 
-cmd="java -jar app.jar --requirements /volume/$1"
+cmd=" --requirements \"/volume/$1\""
 
 if [ ! -z "$2" ] ; then
-    cmd="${cmd} --fail $2"
+    cmd="${cmd} --fail \"$2\""
 fi
 
 if [ ! -z "$3" ] ; then
-    cmd="${cmd} --exclude $3"
-fi
-
-if [ ! -z "$3" ] ; then
-    cmd="${cmd} --exclude $3"
+    cmd="${cmd} --exclude \"$3\""
 fi
 
 if [ ! -z "$4" ] ; then
@@ -30,6 +26,14 @@ if [ ! -z "$6" ] ; then
     cmd="${cmd} --table-headers"
 fi
 
-echo "Running command: ${cmd}"
-report=$(eval $cmd)
+echo "ls ./"
+ls -ltha ./
+echo ""
+
+echo "ls /github"
+ls -lthaR /github/
+echo ""
+
+echo "Running command: java -jar app.jar ${cmd}"
+report=$( java -jar app.jar $cmd)
 echo "::set-output name=report::$report"
