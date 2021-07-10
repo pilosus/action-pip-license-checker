@@ -7,17 +7,17 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
-## [0.1.1] - 2021-07-10
+## [v0.1.1] - 2021-07-10
 ### Added
 - Changelog added
 
 ### Fixed
 - Multiline output string formatting fixed as per the [workaround](https://github.community/t/set-output-truncates-multiline-strings/16852)
 
-## 0.1.0 - 2021-07-10
+## v0.1.0 - 2021-07-10
 ### Added
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/0.1.1...HEAD
-[0.1.1]: https://github.com/pilosus/pip-license-checker/compare/0.1.0...0.1.1
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/pilosus/pip-license-checker/compare/v0.1.0...v0.1.1
