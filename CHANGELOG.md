@@ -9,8 +9,9 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [v0.1.2] - 2021-07-11
 ### Fixed
-- Example usage updated
-- Input `requirement` description fixed
+- Output license check result for debugging
+- Example usage extended with printing nicely formatted report
+- Input `requirement` description fixed (default value)
 
 ## [v0.1.1] - 2021-07-10
 ### Added
