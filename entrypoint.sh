@@ -35,14 +35,14 @@ echo "Running command: java -jar /usr/src/app/app.jar ${cmd}"
 report=$( java -jar /usr/src/app/app.jar $cmd)
 status=$?
 
+echo "License check report"
+echo $report
+
 # ugly formatting to make multi-line string work
 # https://github.community/t/set-output-truncates-multiline-strings/16852
 report="${report//'%'/'%25'}"
 report="${report//$'\n'/'%0A'}"
 report="${report//$'\r'/'%0D'}"
-
-echo "License check report"
-echo $report
 
 echo "::set-output name=report::$report"
 
