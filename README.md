@@ -10,20 +10,22 @@ tool in GitHub Actions.
 jobs:
   license_check:
     runs-on: ubuntu-18.04
-
     steps:
     - name: Checkout the code
       uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
     - name: Check Python deps licenses
-      uses: pilosus/action-pip-license-checker@v0.1.1
+      id: license_check_report
+      uses: pilosus/action-pip-license-checker@v0.1.2
       with:
         requirements: 'requirements.txt'
         fail: 'Copyleft'
         exclude: 'aio.*'
         with-totals: true
         table-headers: true
+    - name: Print report
+      run: echo "${{ steps.license_check_report.outputs.report }}"
 ```
 
 
@@ -34,7 +36,7 @@ All the inputs correspond with `pip-license-checker`'s
 
 ### `requirements`
 
-**Required** Path to requirements file. Defaults to `"./requirements.txt"`.
+**Required** Path to requirements file. Defaults to `"requirements.txt"`.
 
 ### `fail`
 

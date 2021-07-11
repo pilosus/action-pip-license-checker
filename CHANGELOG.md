@@ -8,8 +8,9 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - Nothing here yet
 
 ## [v0.1.2] - 2021-07-11
-### Added
-- Print license check results
+### Fixed
+- Example usage updated
+- Input `requirement` description fixed
 
 ## [v0.1.1] - 2021-07-10
 ### Added
