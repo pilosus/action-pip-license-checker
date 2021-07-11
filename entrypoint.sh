@@ -41,6 +41,9 @@ report="${report//'%'/'%25'}"
 report="${report//$'\n'/'%0A'}"
 report="${report//$'\r'/'%0D'}"
 
+echo "License check report"
+echo $report
+
 echo "::set-output name=report::$report"
 
 if [ "$status" -eq "0" ] ; then
