@@ -21,12 +21,16 @@ jobs:
       with:
         requirements: 'requirements.txt'
         fail: 'Copyleft'
-        exclude: 'aio.*'
+        exclude: '^(pylint|aio[-_]*).*'
         with-totals: true
         table-headers: true
     - name: Print report
+      if: ${{ always() }}
       run: echo "${{ steps.license_check_report.outputs.report }}"
 ```
+
+Integration example: [workflow](https://github.com/pilosus/piny/pull/134/files),
+[action run](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true)
 
 
 ## Inputs
