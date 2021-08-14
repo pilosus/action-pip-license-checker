@@ -1,10 +1,13 @@
 # GitHub Action for Python dependencies license check
 
-Check Python PyPI package license with
-[pip-license-check](https://github.com/pilosus/pip-license-checker)
-tool in GitHub Actions.
+Check Python PyPI package license names and types (permissive, copyleft, etc.) with
+[pip-license-check](https://github.com/pilosus/pip-license-checker) tool in GitHub Actions.
 
-## Example usage
+Check license types for any list of dependencies with given license names too!
+
+## Usage examples
+
+### Check explicit Python dependencies list for copyleft licenses
 
 ```yaml
 jobs:
@@ -15,9 +18,9 @@ jobs:
       uses: actions/checkout@v2.3.4
       with:
         fetch-depth: 0
-    - name: Check Python deps licenses
+    - name: Check Python dependencies license names and type
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.1.2
+      uses: pilosus/action-pip-license-checker@v0.2.0
       with:
         requirements: 'requirements.txt'
         fail: 'Copyleft'
@@ -29,8 +32,57 @@ jobs:
       run: echo "${{ steps.license_check_report.outputs.report }}"
 ```
 
-Integration example: [workflow](https://github.com/pilosus/piny/pull/134/files),
-[action run](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true)
+### Check all packages including transitive dependencies
+
+```yaml
+jobs:
+  license_check:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v2.3.4
+      with:
+        fetch-depth: 0
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+    - name: Get explicit and transitive dependencies
+      run: |
+        pip install -r requirements.txt
+        pip freeze > requirements-all.txt
+    - name: Check python
+      id: license_check_report
+      uses: pilosus/action-pip-license-checker@v0.2.0
+      with:
+        requirements: 'requirements-all.txt'
+        fail: 'Copyleft'
+        exclude: 'pylint.*'
+    - name: Print report
+      if: ${{ always() }}
+      run: echo "${{ steps.license_check_report.outputs.report }}"
+```
+
+### Check CSV file with given package and license names
+
+```yaml
+jobs:
+  license_check:
+    runs-on: ubuntu-18.04
+    steps:
+    ...
+    - name: Check CSV file without headers
+      id: license_check_report
+      uses: pilosus/action-pip-license-checker@v0.2.0
+      with:
+        external: 'node_modules_licenses.csv
+        no-external-csv-headers: true
+    ...
+```
+
+Integration examples: [workflow](https://github.com/pilosus/piny/pull/134/files),
+[action run 1](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true),
+[action run 2](https://github.com/pilosus/piny/runs/3330267456?check_suite_focus=true)
 
 
 ## Inputs
@@ -41,6 +93,16 @@ All the inputs correspond with `pip-license-checker`'s
 ### `requirements`
 
 **Required** Path to requirements file. Defaults to `"requirements.txt"`.
+
+### `external`
+
+Path to CSV file in format: `package_name,license_name[,...]`.
+
+Used to check license types for the list of given packages with their
+licenses.
+
+Allows to check license types for JavaScript, Java or any other
+dependencies with known licenses.
 
 ### `fail`
 
@@ -71,6 +133,11 @@ Print only totals for license types found, do not include the detailed list of t
 ### `table-headers`
 
 Print table headers for detailed list of the packages.
+
+### `no-external-csv-headers`
+
+CSV file provided via external input does not contain header line.
+By default a CSV file is assumed to have headers.
 
 ## Outputs
 

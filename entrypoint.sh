@@ -6,28 +6,32 @@ workdir="/github/workspace"
 # use all specified options
 cmd="--requirements ${workdir}/$1"
 
-if [ ! -z "$2" ] ; then
-    cmd="${cmd} --fail $2"
-fi
-
 if [ ! -z "$3" ] ; then
-    cmd="${cmd} --exclude $3"
+    cmd="${cmd} --fail $3"
 fi
 
 if [ ! -z "$4" ] ; then
-    cmd="${cmd} --pre"
+    cmd="${cmd} --exclude $4"
 fi
 
 if [ ! -z "$5" ] ; then
-    cmd="${cmd} --with-totals"
+    cmd="${cmd} --pre"
 fi
 
 if [ ! -z "$6" ] ; then
-    cmd="${cmd} --totals-only"
+    cmd="${cmd} --with-totals"
 fi
 
 if [ ! -z "$7" ] ; then
+    cmd="${cmd} --totals-only"
+fi
+
+if [ ! -z "$8" ] ; then
     cmd="${cmd} --table-headers"
+fi
+
+if [ ! -z "$9" ] ; then
+    cmd="${cmd} --no-external-csv-headers"
 fi
 
 # run command and save its exit code

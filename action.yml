@@ -10,6 +10,9 @@ inputs:
     description: 'Path to requirements file'
     required: true
     default: 'requirements.txt'
+  external:
+    description: 'Path to CSV file in format: `package_name,license_name[,...]`'
+    required: false
   fail:
     description: 'Return non-zero exit code if license type is found'
     required: false
@@ -28,6 +31,9 @@ inputs:
   table-headers:
     description: 'Print table headers'
     required: false
+  no-external-csv-headers:
+    description: 'CSV file provided via external input does not contain header line'
+    required: false
 outputs:
   report:
     description: 'License check report'
@@ -36,9 +42,11 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.requirements }}
+    - ${{ inputs.external }}
     - ${{ inputs.fail }}
     - ${{ inputs.exclude }}
     - ${{ inputs.pre }}
     - ${{ inputs.with-totals }}
     - ${{ inputs.totals-only }}
     - ${{ inputs.table-headers }}
+    - ${{ inputs.no-external-csv-headers }}

@@ -7,6 +7,13 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.2.0] - 2021-08-14
+### Added
+- Support `pip-license-checker` v0.21.0 with breaking changes,
+  see [original CHANGELOG](https://github.com/pilosus/pip-license-checker/blob/main/CHANGELOG.md).
+- Input `external` field to provide CSV files with package and license names.
+- Input `no-external-csv-headers` field for external CSV files without header line.
+
 ## [v0.1.2] - 2021-07-11
 ### Fixed
 - Output license check result for debugging
@@ -26,6 +33,7 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/pilosus/pip-license-checker/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/pilosus/pip-license-checker/compare/v0.1.0...v0.1.1
