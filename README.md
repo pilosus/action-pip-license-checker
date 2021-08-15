@@ -1,9 +1,21 @@
-# GitHub Action for Python dependencies license check
+# GitHub Action for free/libre and open source license compliance
 
-Check Python PyPI package license names and types (permissive, copyleft, etc.) with
-[pip-license-check](https://github.com/pilosus/pip-license-checker) tool in GitHub Actions.
+Detect license names and types for Python PyPI packages. Identify
+license types for given license names obtained by third-party
+tools. Great coverage of free/libre and open source licenses of all
+types:
+[public domain](https://en.wikipedia.org/wiki/Public-domain-equivalent_license),
+[permissive](https://en.wikipedia.org/wiki/Permissive_software_license),
+[copyleft](https://en.wikipedia.org/wiki/Copyleft).
 
-Check license types for any list of dependencies with given license names too!
+Check Python dependencies, including in `requirements.txt` format for
+`pip` package installer, without Python and its tooling
+presence. Check license types for dependencies and their licenses
+obtained by third-party tools (e.g. JavaScript's
+[license-checker](https://www.npmjs.com/package/license-checker))
+
+Based on [pip-license-check](https://github.com/pilosus/pip-license-checker)
+command-line tool (see its README for details).
 
 ## Usage examples
 
@@ -20,10 +32,10 @@ jobs:
         fetch-depth: 0
     - name: Check Python dependencies license names and type
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.2.0
+      uses: pilosus/action-pip-license-checker
       with:
         requirements: 'requirements.txt'
-        fail: 'Copyleft'
+        fail: 'Copyleft,Error,Other'
         exclude: '^(pylint|aio[-_]*).*'
         with-totals: true
         table-headers: true
@@ -53,7 +65,7 @@ jobs:
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.2.0
+      uses: pilosus/action-pip-license-checker@v0.3.0
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -73,16 +85,25 @@ jobs:
     ...
     - name: Check CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.2.0
+      uses: pilosus/action-pip-license-checker@v0.3.0
       with:
         external: 'node_modules_licenses.csv
         no-external-csv-headers: true
-    ...
+        fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
+        fails-only: true
+        exclude: 'node-forge.*'
+        with-totals: true
+        ...
 ```
 
-Integration examples: [workflow](https://github.com/pilosus/piny/pull/134/files),
-[action run 1](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true),
-[action run 2](https://github.com/pilosus/piny/runs/3330267456?check_suite_focus=true)
+Integration examples:
+
+- [Explicit dependencies only](https://github.com/pilosus/piny/pull/134/files)
+  and its [action run](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true)
+- [Explicit and transitive dependencies](https://github.com/pilosus/piny/pull/140/files)
+  and its [action run](https://github.com/pilosus/piny/runs/3330267456?check_suite_focus=true)
+- [Third-party license list in CSV file](https://github.com/pilosus/piny/pull/141/files)
+  and its [action run](https://github.com/pilosus/piny/runs/3333900660?check_suite_focus=true)
 
 
 ## Inputs
@@ -92,11 +113,13 @@ All the inputs correspond with `pip-license-checker`'s
 
 ### `requirements`
 
-**Required** Path to requirements file. Defaults to `"requirements.txt"`.
+Path to requirements file, e.g. `requirements.txt`. Separate multiple files with comma: `file1.txt,file2.txt,file3.txt`.
 
 ### `external`
 
 Path to CSV file in format: `package_name,license_name[,...]`.
+
+Separate multiple files with comma: `file1.csv,file2.csv,file3.csv`.
 
 Used to check license types for the list of given packages with their
 licenses.
@@ -109,10 +132,19 @@ dependencies with known licenses.
 Return non-zero exit code if license type provided via the input is found.
 Use one of the following values:
 
-- `Copyleft` (See [Software licenses and copyright law](https://en.wikipedia.org/wiki/Software_license#Software_licenses_and_copyright_law)
+- `WeakCopyleft`
+- `StrongCopyleft`
+- `NetworkCopyleft`
+- `Copyleft` (includes all of above types of copyleft)
 - `Permissive`
 - `Other` (EULA, other non standard licenses)
 - `Error` (package or its license not found)
+
+Separate multiple license types with comma: `Copyleft,Other,Error`.
+
+### `fails-only`
+
+Print only packages of license types specified with `fail` input.
 
 ### `exclude`
 
@@ -144,7 +176,6 @@ By default a CSV file is assumed to have headers.
 ### `report`
 
 Formatted plain text representation of the license check.
-
 
 ## Disclaimer
 
