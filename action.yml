@@ -1,19 +1,22 @@
 # action.yml
-name: 'Python dependencies license check'
+name: 'Dependencies license compliance checker'
 author: 'Vitaly R. Samigullin'
-description: 'Check Python PyPI package license'
+description: 'Detect license names and types for Python PyPI packages or a list of licenses obtained by third-party tools'
 branding:
   icon: 'check-circle'
   color: 'green'
 inputs:
   requirements:
-    description: 'Path to requirements file'
+    description: 'Path to requirements file(s)'
     required: false
   external:
-    description: 'Path to CSV file in format: `package_name,license_name[,...]`'
+    description: 'Path to CSV file(s) in format: `package_name,license_name[,...]`'
     required: false
   fail:
-    description: 'Return non-zero exit code if license type is found'
+    description: 'Return non-zero exit code if specified license type(s) found'
+    required: false
+  fails-only:
+    description: 'Print only packages of license types specified with `fail` input.'
     required: false
   exclude:
     description: 'PCRE to exclude matching packages'

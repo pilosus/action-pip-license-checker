@@ -1,4 +1,4 @@
-# GitHub Action for free/libre and open source license compliance
+# GitHub Action for detecting license names and types
 
 Detect license names and types for Python PyPI packages. Identify
 license types for given license names obtained by third-party
