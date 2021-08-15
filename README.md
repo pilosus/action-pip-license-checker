@@ -87,7 +87,7 @@ jobs:
       id: license_check_report
       uses: pilosus/action-pip-license-checker@v0.3.0
       with:
-        external: 'node_modules_licenses.csv
+        external: 'node_modules_licenses.csv'
         no-external-csv-headers: true
         fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
         fails-only: true
