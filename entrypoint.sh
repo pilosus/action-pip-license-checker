@@ -4,7 +4,15 @@
 workdir="/github/workspace"
 
 # use all specified options
-cmd="--requirements ${workdir}/$1"
+cmd=""
+
+if [ ! -z "$1" ] ; then
+    cmd="${cmd} --requirements ${workdir}/$1"
+fi
+
+if [ ! -z "$2" ] ; then
+    cmd="${cmd} --external ${workdir}/$2"
+fi
 
 if [ ! -z "$3" ] ; then
     cmd="${cmd} --fail $3"
@@ -32,6 +40,10 @@ fi
 
 if [ ! -z "$9" ] ; then
     cmd="${cmd} --no-external-csv-headers"
+fi
+
+if [ -z "$1" ] && [ -z "$2" ] ; then
+    echo "Error: no files provided for check, --requirements and --external are both empty"
 fi
 
 # run command and save its exit code
