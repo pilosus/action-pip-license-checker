@@ -43,6 +43,7 @@ runs:
     - ${{ inputs.requirements }}
     - ${{ inputs.external }}
     - ${{ inputs.fail }}
+    - ${{ inputs.fails-only }}
     - ${{ inputs.exclude }}
     - ${{ inputs.pre }}
     - ${{ inputs.with-totals }}

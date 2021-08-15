@@ -1,49 +1,77 @@
 #!/bin/bash
 
+#
+# Helper functions
+#
+
+function parse_list_to_array () {
+  # parse string into array
+  IFS=',' read -r -a array <<< "$1"
+
+  accumulator=""
+  for i in "${array[@]}"
+  do
+    accumulator="${accumulator} ${2}${i}"
+  done
+  echo "$accumulator"
+}
+
+
+#
+# Consts
+#
+
 # working directory is plugged as docker volume
 workdir="/github/workspace"
 
 # use all specified options
 cmd=""
 
-if [ ! -z "$1" ] ; then
-    cmd="${cmd} --requirements ${workdir}/$1"
+if [ ! -z "${1}" ] ; then
+  result_1=$(parse_list_to_array "${1}" "--requirements ${workdir}/")
+  cmd="${cmd} ${result_1}"
 fi
 
-if [ ! -z "$2" ] ; then
-    cmd="${cmd} --external ${workdir}/$2"
+if [ ! -z "${2}" ] ; then
+  result_2=$(parse_list_to_array "${2}" "--external ${workdir}/")
+  cmd="${cmd} ${result_2}"
 fi
 
-if [ ! -z "$3" ] ; then
-    cmd="${cmd} --fail $3"
+if [ ! -z "${3}" ] ; then
+  result_3=$(parse_list_to_array "${3}" "--fail ")
+  cmd="${cmd} ${result_3}"
 fi
 
-if [ ! -z "$4" ] ; then
-    cmd="${cmd} --exclude $4"
+if [ ! -z "${4}" ] ; then
+  cmd="${cmd} --fails-only"
 fi
 
-if [ ! -z "$5" ] ; then
-    cmd="${cmd} --pre"
+if [ ! -z "${5}" ] ; then
+  cmd="${cmd} --exclude ${5}"
 fi
 
-if [ ! -z "$6" ] ; then
-    cmd="${cmd} --with-totals"
+if [ ! -z "${6}" ] ; then
+  cmd="${cmd} --pre"
 fi
 
-if [ ! -z "$7" ] ; then
-    cmd="${cmd} --totals-only"
+if [ ! -z "${7}" ] ; then
+  cmd="${cmd} --with-totals"
 fi
 
-if [ ! -z "$8" ] ; then
-    cmd="${cmd} --table-headers"
+if [ ! -z "${8}" ] ; then
+  cmd="${cmd} --totals-only"
 fi
 
-if [ ! -z "$9" ] ; then
-    cmd="${cmd} --no-external-csv-headers"
+if [ ! -z "${9}" ] ; then
+  cmd="${cmd} --table-headers"
 fi
 
-if [ -z "$1" ] && [ -z "$2" ] ; then
-    echo "Error: no files provided for check, --requirements and --external are both empty"
+if [ ! -z "${10}" ] ; then
+  cmd="${cmd} --no-external-csv-headers"
+fi
+
+if [ -z "${1}" ] && [ -z "${2}" ] ; then
+  echo "Error: no files provided for check, --requirements and --external are both empty"
 fi
 
 # run command and save its exit code

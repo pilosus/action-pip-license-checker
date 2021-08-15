@@ -7,6 +7,19 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.3.0] - 2021-08-15
+### Fixed
+- External CSV file support.
+
+### Added
+- Multiple items separated by comma for input fields `requirements`,
+  `external`, `fail` in the format: `item1,item2,item3`.
+- Input `fails-only` field to print only packages of license types
+  specified with `fail` input.
+
+### Changed
+- `pip-license-checker` docker image verions bumped to 0.22.0
+
 ## [v0.2.0] - 2021-08-14
 ### Added
 - Support `pip-license-checker` v0.21.0 with breaking changes,
@@ -33,7 +46,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...HEAD
+[v0.3.0]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/pilosus/pip-license-checker/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/pilosus/pip-license-checker/compare/v0.1.0...v0.1.1
