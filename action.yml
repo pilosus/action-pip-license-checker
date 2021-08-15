@@ -8,8 +8,7 @@ branding:
 inputs:
   requirements:
     description: 'Path to requirements file'
-    required: true
-    default: 'requirements.txt'
+    required: false
   external:
     description: 'Path to CSV file in format: `package_name,license_name[,...]`'
     required: false
