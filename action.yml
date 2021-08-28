@@ -12,6 +12,12 @@ inputs:
   external:
     description: 'Path to CSV file(s) in format: `package_name,license_name[,...]`'
     required: false
+  external-format:
+    description: 'External file format: csv, cocoapods, gradle'
+    required: false
+  external-options:
+    description: 'String of options map in EDN format'
+    required: false
   fail:
     description: 'Return non-zero exit code if specified license type(s) found'
     required: false
@@ -20,6 +26,9 @@ inputs:
     required: false
   exclude:
     description: 'PCRE to exclude matching packages'
+    required: false
+  exclude-license:
+    description: 'PCRE to exclude packages with matching license names'
     required: false
   pre:
     description: 'Include pre-release and development versions'
@@ -33,9 +42,6 @@ inputs:
   table-headers:
     description: 'Print table headers'
     required: false
-  no-external-csv-headers:
-    description: 'CSV file provided via external input does not contain header line'
-    required: false
 outputs:
   report:
     description: 'License check report'
@@ -43,13 +49,15 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.requirements }}
-    - ${{ inputs.external }}
-    - ${{ inputs.fail }}
-    - ${{ inputs.fails-only }}
-    - ${{ inputs.exclude }}
-    - ${{ inputs.pre }}
-    - ${{ inputs.with-totals }}
-    - ${{ inputs.totals-only }}
-    - ${{ inputs.table-headers }}
-    - ${{ inputs.no-external-csv-headers }}
+    - ${{ inputs.requirements }}       # ${1}
+    - ${{ inputs.external }}           # ${2}
+    - ${{ inputs.external-format }}    # ${3}
+    - ${{ inputs.external-options }}   # ${4}
+    - ${{ inputs.fail }}               # ${5}
+    - ${{ inputs.fails-only }}         # ${6}
+    - ${{ inputs.exclude }}            # ${7}
+    - ${{ inputs.exclude-license }}    # ${8}
+    - ${{ inputs.pre }}                # ${9}
+    - ${{ inputs.with-totals }}        # ${10}
+    - ${{ inputs.totals-only }}        # ${11}
+    - ${{ inputs.table-headers }}      # ${12}
