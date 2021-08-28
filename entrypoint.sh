@@ -42,7 +42,7 @@ if [ ! -z "${3}" ] ; then
 fi
 
 if [ ! -z "${4}" ] ; then
-  cmd="${cmd} --external-options ${4}"
+  cmd="${cmd} --external-options '${4}'"
 fi
 
 if [ ! -z "${5}" ] ; then
