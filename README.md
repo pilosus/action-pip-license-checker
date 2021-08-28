@@ -88,15 +88,21 @@ jobs:
       uses: pilosus/action-pip-license-checker@v0.3.0
       with:
         external: 'node_modules_licenses.csv'
-        no-external-csv-headers: true
+        external-format: csv
+        external-options: '{:skip-header true}'
         fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
         fails-only: true
-        exclude: 'node-forge.*'
+        exclude: 'your-company-name.*'
+        exclude-license: '(?i)copyright'
         with-totals: true
         ...
 ```
 
-Integration examples:
+### Supported file formats
+
+See the [documentation](https://github.com/pilosus/pip-license-checker#external-file-formats).
+
+### Integration examples
 
 - [Explicit dependencies only](https://github.com/pilosus/piny/pull/134/files)
   and its [action run](https://github.com/pilosus/piny/runs/3051101459?check_suite_focus=true)
@@ -117,15 +123,26 @@ Path to requirements file, e.g. `requirements.txt`. Separate multiple files with
 
 ### `external`
 
-Path to CSV file in format: `package_name,license_name[,...]`.
-
-Separate multiple files with comma: `file1.csv,file2.csv,file3.csv`.
+Path to an external file. Separate multiple files with comma: `file1.csv,file2.csv,file3.csv`.
 
 Used to check license types for the list of given packages with their
 licenses.
 
 Allows to check license types for JavaScript, Java or any other
-dependencies with known licenses.
+dependencies with known licenses in one of the supported file formats.
+
+### `external-format`
+
+External file format: `csv`, `cocoapods`, `gradle`, etc.
+
+See the full list of supported formats and their documentation
+[here](https://github.com/pilosus/pip-license-checker#external-file-formats).
+
+### `external-options`
+
+String of options in [EDN format](http://edn-format.org/).
+
+See the [documentation](https://github.com/pilosus/pip-license-checker#external-file-options) for more details.
 
 ### `fail`
 
@@ -150,6 +167,10 @@ Print only packages of license types specified with `fail` input.
 
 Regular expression (PCRE) to exclude matching packages from the check.
 
+### `exclude-license`
+
+Regular expression (PCRE) to exclude matching license names from the check.
+
 ### `pre`
 
 Include pre-release and development versions.
@@ -166,10 +187,6 @@ Print only totals for license types found, do not include the detailed list of t
 
 Print table headers for detailed list of the packages.
 
-### `no-external-csv-headers`
-
-CSV file provided via external input does not contain header line.
-By default a CSV file is assumed to have headers.
 
 ## Outputs
 

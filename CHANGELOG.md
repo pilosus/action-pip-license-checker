@@ -7,6 +7,21 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.4.0] - 2021-08-28
+### Changed
+- Docker image version of `pip-license-checker` bumped to `0.26.0`.
+
+### Added
+- `external-format` input field to specify one of the supported
+  external file formats (`csv`, `cocoapods`, `gradle` at the time of
+  writing).
+- `external-options` input field to alter external file
+  processing. Options are specific for each `external-format`.
+
+### Removed
+- `no-external-csv-headers` input field.
+  Use `externa-options` instead (e.g. `{:skip-header false}`).
+
 ## [v0.3.0] - 2021-08-15
 ### Fixed
 - External CSV file support.
@@ -46,7 +61,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...HEAD
+[v0.4.0]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...v0.2.0
 [v0.1.2]: https://github.com/pilosus/pip-license-checker/compare/v0.1.1...v0.1.2
