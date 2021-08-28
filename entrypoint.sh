@@ -21,8 +21,13 @@ function parse_list_to_array () {
 # Consts
 #
 
+# command to run
+runner="java -jar /usr/src/app/app.jar"
+#runner="java -jar /home/vitaly/git/pip-license-checker/target/uberjar/pip-license-checker-0.26.0-standalone.jar"
+
 # working directory is plugged as docker volume
 workdir="/github/workspace"
+#workdir="/home/vitaly/git/pip-license-checker/resources"
 
 # use all specified options
 cmd=""
@@ -55,11 +60,11 @@ if [ ! -z "${6}" ] ; then
 fi
 
 if [ ! -z "${7}" ] ; then
-  cmd="${cmd} --exclude ${7}"
+  cmd="${cmd} --exclude '${7}'"
 fi
 
 if [ ! -z "${8}" ] ; then
-  cmd="${cmd} --exclude-license ${8}"
+  cmd="${cmd} --exclude-license '${8}'"
 fi
 
 if [ ! -z "${9}" ] ; then
@@ -83,14 +88,17 @@ if [ -z "${1}" ] && [ -z "${2}" ] ; then
 fi
 
 # run command and save its exit code
-echo "Running command: java -jar /usr/src/app/app.jar ${cmd}"
-report=$( java -jar /usr/src/app/app.jar $cmd)
+full_command="${runner} ${cmd}"
+echo "Running command: ${full_command}"
+
+report=$( eval "$full_command" )
 status=$?
 
 # formatting is broken, used for debugging only
 # e.g. validation errors output
 echo "Output"
 echo $report
+
 
 # ugly formatting to make multi-line string work
 # https://github.community/t/set-output-truncates-multiline-strings/16852
