@@ -7,6 +7,11 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.5.0] - 2021-08-30
+### Changed
+- Docker image version of `pip-license-checker` bumped to `0.28.1` to
+  support `csv` external file options.
+
 ## [v0.4.0] - 2021-08-28
 ### Changed
 - Docker image version of `pip-license-checker` bumped to `0.26.0`.
@@ -61,7 +66,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...HEAD
+[v0.5.0]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...v0.3.0
 [v0.2.0]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...v0.2.0
