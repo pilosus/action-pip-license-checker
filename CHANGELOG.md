@@ -7,6 +7,10 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.6.0] - 2021-09-13
+### Added
+- `formatter` input field for printf-style formatting string to format report.
+
 ## [v0.5.0] - 2021-08-30
 ### Changed
 - Docker image version of `pip-license-checker` bumped to `0.28.1` to
@@ -66,7 +70,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.6.0...HEAD
+[v0.6.0]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...v0.6.0
 [v0.5.0]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...v0.4.0
 [v0.3.0]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...v0.3.0
