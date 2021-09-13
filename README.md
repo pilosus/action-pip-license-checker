@@ -233,6 +233,9 @@ Print only totals for license types found, do not include the detailed list of t
 
 Print table headers for detailed list of the packages.
 
+### `formatter`
+
+Printf-style formatter string for report formatting. Default value is `%-35s %-55s %-30s`.
 
 ## Outputs
 

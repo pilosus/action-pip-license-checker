@@ -83,6 +83,10 @@ if [ ! -z "${12}" ] ; then
   cmd="${cmd} --table-headers"
 fi
 
+if [ ! -z "${13}" ] ; then
+  cmd="${cmd} --formatter '${13}'"
+fi
+
 if [ -z "${1}" ] && [ -z "${2}" ] ; then
   echo "Error: no files provided for check, --requirements and --external are both empty"
 fi

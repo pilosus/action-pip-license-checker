@@ -42,6 +42,9 @@ inputs:
   table-headers:
     description: 'Print table headers'
     required: false
+  formatter:
+    description: 'Printf-style formatter string for report formatting'
+    required: false
 outputs:
   report:
     description: 'License check report'
@@ -61,3 +64,4 @@ runs:
     - ${{ inputs.with-totals }}        # ${10}
     - ${{ inputs.totals-only }}        # ${11}
     - ${{ inputs.table-headers }}      # ${12}
+    - ${{ inputs.formatter }}          # ${13}

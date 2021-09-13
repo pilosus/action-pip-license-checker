@@ -1,4 +1,4 @@
-FROM pilosus/pip-license-checker:0.28.1
+FROM pilosus/pip-license-checker:0.30.0
 
 COPY entrypoint.sh /usr/src/app/
 
