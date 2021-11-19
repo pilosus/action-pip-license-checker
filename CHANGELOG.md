@@ -7,6 +7,11 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.6.1] - 2021-11-19
+### Changed
+- Docker image version of `pip-license-checker` bumped to `0.31.0` to
+  support both `zlib` and `zlib/libpng` licenses
+
 ## [v0.6.0] - 2021-09-13
 ### Added
 - `formatter` input field for printf-style formatting string to format report.
@@ -70,7 +75,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.6.0...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.6.1...HEAD
+[v0.6.1]: https://github.com/pilosus/pip-license-checker/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...v0.6.0
 [v0.5.0]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...v0.5.0
 [v0.4.0]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...v0.4.0
