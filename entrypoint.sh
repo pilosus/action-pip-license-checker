@@ -110,7 +110,7 @@ report="${report//'%'/'%25'}"
 report="${report//$'\n'/'%0A'}"
 report="${report//$'\r'/'%0D'}"
 
-echo "::set-output name=report::$report"
+echo "report=$report" >> $GITHUB_OUTPUT
 
 if [ "$status" -eq "0" ] ; then
   exit 0
