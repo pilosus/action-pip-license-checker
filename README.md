@@ -25,10 +25,10 @@ Based on [pip-license-check](https://github.com/pilosus/pip-license-checker) com
 ```yaml
 jobs:
   license_check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: Check Python dependencies license names and type
@@ -50,10 +50,10 @@ jobs:
 ```yaml
 jobs:
   license_check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v2
       with:
         fetch-depth: 0
     - name: Setup Python
@@ -81,7 +81,7 @@ jobs:
 ```yaml
 jobs:
   license_check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-lastest
     steps:
     ...
     - name: Check license-checker CSV file without headers
@@ -104,7 +104,7 @@ jobs:
 ```yaml
 jobs:
   license_check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     ...
     - name: Check gradle-license-plugin JSON file
@@ -126,7 +126,7 @@ jobs:
 ```yaml
 jobs:
   license_check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     ...
     - name: Check cocoapods-acknowledgements Plist file
