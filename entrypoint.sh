@@ -103,14 +103,7 @@ status=$?
 echo "Output"
 echo $report
 
-
-# ugly formatting to make multi-line string work
-# https://github.community/t/set-output-truncates-multiline-strings/16852
-report="${report//'%'/'%25'}"
-report="${report//$'\n'/'%0A'}"
-report="${report//$'\r'/'%0D'}"
-
-echo "::set-output name=report::$report"
+echo "report=$report" >> $GITHUB_OUTPUT
 
 if [ "$status" -eq "0" ] ; then
   exit 0
