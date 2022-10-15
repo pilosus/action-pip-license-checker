@@ -98,19 +98,11 @@ echo "Running command: ${full_command}"
 report=$( eval "$full_command" )
 status=$?
 
-# formatting is broken, used for debugging only
-# e.g. validation errors output
-echo "Output"
-echo $report
-
-
-# ugly formatting to make multi-line string work
-# https://github.community/t/set-output-truncates-multiline-strings/16852
-report="${report//'%'/'%25'}"
-report="${report//$'\n'/'%0A'}"
-report="${report//$'\r'/'%0D'}"
-
-echo "::set-output name=report::$report"
+# Treat multiline output properly
+# https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+echo "report<<EOF" >> $GITHUB_OUTPUT
+echo "$report" >> $GITHUB_OUTPUT
+echo "EOF" >> $GITHUB_OUTPUT
 
 if [ "$status" -eq "0" ] ; then
   exit 0

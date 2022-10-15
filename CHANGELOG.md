@@ -7,6 +7,16 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.6.3] - 2022-10-15
+### Fixed
+- Remove deprecated GitHub Actions
+  [set-out](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/),
+  use proper
+  [multiline](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings)
+  string output - by [pachay](https://github.com/pachay),
+  [kulapard](https://github.com/kulapard), and
+  [pilosus](https://github.com/pilosus)
+
 ## [v0.6.2] - 2022-06-25
 ### Fixed
 - Docker image version of `pip-license-checker` bumped to `0.33.0` to
@@ -81,7 +91,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 - MVP
 
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.6.3...HEAD
+[v0.6.3]: https://github.com/pilosus/pip-license-checker/compare/v0.6.2...v0.6.3
 [v0.6.2]: https://github.com/pilosus/pip-license-checker/compare/v0.6.1...v0.6.2
 [v0.6.1]: https://github.com/pilosus/pip-license-checker/compare/v0.6.0...v0.6.1
 [v0.6.0]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...v0.6.0
