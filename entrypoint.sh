@@ -98,12 +98,11 @@ echo "Running command: ${full_command}"
 report=$( eval "$full_command" )
 status=$?
 
-# formatting is broken, used for debugging only
-# e.g. validation errors output
-echo "Output"
-echo $report
-
-echo "report=$report" >> $GITHUB_OUTPUT
+# Treat multiline output properly
+# https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#multiline-strings
+echo "report<<EOF" >> $GITHUB_OUTPUT
+echo "$report" >> $GITHUB_OUTPUT
+echo "EOF" >> $GITHUB_OUTPUT
 
 if [ "$status" -eq "0" ] ; then
   exit 0
