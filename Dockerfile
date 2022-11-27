@@ -1,5 +1,12 @@
 FROM pilosus/pip-license-checker:0.38.0
 
-COPY entrypoint.sh /usr/src/app/
+# Install deps as root user
+USER root
+RUN apk add --no-cache bash
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+# Copy files
+COPY --chown=1000:1000 entrypoint.sh /usr/src/app/
+
+# Run as unpriviledged user
+USER unpriv
+CMD ["/usr/src/app/entrypoint.sh"]
