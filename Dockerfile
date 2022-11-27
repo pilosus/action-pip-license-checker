@@ -7,6 +7,4 @@ RUN apk add --no-cache bash
 # Copy files
 COPY --chown=1000:1000 entrypoint.sh /usr/src/app/
 
-# Run as unpriviledged user
-USER unpriv
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
