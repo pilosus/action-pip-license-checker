@@ -45,6 +45,12 @@ inputs:
   formatter:
     description: 'Printf-style formatter string for report formatting'
     required: false
+  github-token:
+    description: 'GitHub OAuth Token to increase rate-limits'
+    required: false
+  verbose:
+    description: 'Make output verbose'
+    required: false
 outputs:
   report:
     description: 'License check report'
@@ -65,3 +71,5 @@ runs:
     - ${{ inputs.totals-only }}        # ${11}
     - ${{ inputs.table-headers }}      # ${12}
     - ${{ inputs.formatter }}          # ${13}
+    - ${{ inputs.github-token }}       # ${14}
+    - ${{ inputs.verbose }}            # ${15}

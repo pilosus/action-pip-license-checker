@@ -23,7 +23,7 @@ function parse_list_to_array () {
 
 # command to run
 runner="java -jar /usr/src/app/app.jar"
-#runner="java -jar /home/vitaly/git/pip-license-checker/target/uberjar/pip-license-checker-0.26.0-standalone.jar"
+#runner="java -jar /home/vitaly/git/pip-license-checker/target/uberjar/pip-license-checker-0.38.0-standalone.jar"
 
 # working directory is plugged as docker volume
 workdir="/github/workspace"
@@ -85,6 +85,14 @@ fi
 
 if [ ! -z "${13}" ] ; then
   cmd="${cmd} --formatter '${13}'"
+fi
+
+if [ ! -z "${14}" ] ; then
+  cmd="${cmd} --github-token '${14}'"
+fi
+
+if [ ! -z "${15}" ] ; then
+  cmd="${cmd} --verbose"
 fi
 
 if [ -z "${1}" ] && [ -z "${2}" ] ; then

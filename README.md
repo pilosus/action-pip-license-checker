@@ -96,6 +96,8 @@ jobs:
         exclude: 'your-company-name.*'
         exclude-license: '(?i)copyright'
         with-totals: true
+        verbose: true
+        github-token: ${{ secrets.OAUTH_TOKEN_GITHUB }}
         ...
 ```
 
@@ -236,6 +238,16 @@ Print table headers for detailed list of the packages.
 ### `formatter`
 
 Printf-style formatter string for report formatting. Default value is `%-35s %-55s %-30s`.
+
+### `github-token`
+
+GitHub OAuth Token to increase rate-limits when requesting GitHub
+API. Recommended to keep a token as a GitHub secret.
+
+### `verbose`
+
+Make output verbose for exceptions visibility. `Misc` column is added
+to a report for errors output.
 
 ## Outputs
 
