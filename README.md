@@ -20,32 +20,7 @@ Based on [pip-license-check](https://github.com/pilosus/pip-license-checker) com
 
 ## Usage examples
 
-### Check explicit Python dependencies list for copyleft licenses
-
-```yaml
-jobs:
-  license_check:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout the code
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    - name: Check Python dependencies license names and type
-      id: license_check_report
-      uses: pilosus/action-pip-license-checker
-      with:
-        requirements: 'requirements.txt'
-        fail: 'Copyleft,Error,Other'
-        exclude: '^(pylint|aio[-_]*).*'
-        with-totals: true
-        table-headers: true
-    - name: Print report
-      if: ${{ always() }}
-      run: echo "${{ steps.license_check_report.outputs.report }}"
-```
-
-### Check all packages including transitive dependencies
+### Check all Python packages including transitive dependencies
 
 ```yaml
 jobs:
@@ -66,7 +41,7 @@ jobs:
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.5.0
+      uses: pilosus/action-pip-license-checker@v0.8.0-rc1
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -86,7 +61,7 @@ jobs:
     ...
     - name: Check license-checker CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.5.0
+      uses: pilosus/action-pip-license-checker@v0.8.0-rc1
       with:
         external: 'npm-license-checker.csv'
         external-format: 'csv'
@@ -95,7 +70,7 @@ jobs:
         fails-only: true
         exclude: 'your-company-name.*'
         exclude-license: '(?i)copyright'
-        with-totals: true
+        totals: true
         verbose: true
         github-token: ${{ secrets.OAUTH_TOKEN_GITHUB }}
         ...
@@ -111,7 +86,7 @@ jobs:
     ...
     - name: Check gradle-license-plugin JSON file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.5.0
+      uses: pilosus/action-pip-license-checker@v0.8.0-rc1
       with:
         external: 'gradle-license-plugin.json'
         external-format: 'gradle'
@@ -119,7 +94,7 @@ jobs:
         fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
         fails-only: true
         exclude: 'your-company-name.*'
-        with-totals: true
+        totals: true
         ...
 ```
 
@@ -133,7 +108,7 @@ jobs:
     ...
     - name: Check cocoapods-acknowledgements Plist file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.5.0
+      uses: pilosus/action-pip-license-checker@v0.8.0-rc1
       with:
         external: 'cocoapods-acknowledgements.plist'
         external-format: 'cocoapods'
@@ -141,7 +116,7 @@ jobs:
         fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
         fails-only: true
         exclude: 'your-company-name.*'
-        with-totals: true
+        totals: true
         ...
 ```
 
@@ -223,17 +198,25 @@ Regular expression (PCRE) to exclude matching license names from the check.
 
 Include pre-release and development versions.
 
-### `with-totals`
+### `totals`
 
 Print totals for license types found. Totals appended after the detailed list of the packages.
+
+### [DEPRECATED] `with-totals`
+
+Use `totals` instead.
 
 ### `totals-only`
 
 Print only totals for license types found, do not include the detailed list of the packages checked.
 
-### `table-headers`
+### `headers`
 
 Print table headers for detailed list of the packages.
+
+### [DEPRECATED] `table-headers`
+
+Use `headers` instead.
 
 ### `formatter`
 

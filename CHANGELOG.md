@@ -7,6 +7,11 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.8.0-rc1] - 2022-12-30
+### Changed
+- Used `pip-license-checker` version `0.42.0-SNAPSHOT` to migrate over
+  PyPI Simple API for releases information
+
 ## [v0.7.1] - 2022-12-02
 ### Changed
 - Used `pip-license-checker` version `0.39.0` with error handling &
@@ -103,7 +108,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.7.1...HEAD
+[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.8.0-rc1...HEAD
+[v0.8.0-rc1]: https://github.com/pilosus/pip-license-checker/compare/v0.8.0-rc1...v0.7.1
 [v0.7.1]: https://github.com/pilosus/pip-license-checker/compare/v0.7.0...v0.7.1
 [v0.7.0]: https://github.com/pilosus/pip-license-checker/compare/v0.6.3...v0.7.0
 [v0.6.3]: https://github.com/pilosus/pip-license-checker/compare/v0.6.2...v0.6.3

@@ -33,14 +33,20 @@ inputs:
   pre:
     description: 'Include pre-release and development versions'
     required: false
-  with-totals:
+  totals:
     description: 'Print totals for license types'
+    required: false
+  with-totals:
+    description: '[DEPRECATED] Use `totals`'
     required: false
   totals-only:
     description: 'Print only totals for license types'
     required: false
-  table-headers:
+  headers:
     description: 'Print table headers'
+    required: false
+  table-headers:
+    description: '[DEPRECATED] Use `headers`'
     required: false
   formatter:
     description: 'Printf-style formatter string for report formatting'
@@ -67,9 +73,11 @@ runs:
     - ${{ inputs.exclude }}            # ${7}
     - ${{ inputs.exclude-license }}    # ${8}
     - ${{ inputs.pre }}                # ${9}
-    - ${{ inputs.with-totals }}        # ${10}
-    - ${{ inputs.totals-only }}        # ${11}
-    - ${{ inputs.table-headers }}      # ${12}
-    - ${{ inputs.formatter }}          # ${13}
-    - ${{ inputs.github-token }}       # ${14}
-    - ${{ inputs.verbose }}            # ${15}
+    - ${{ inputs.totals }}             # ${10}
+    - ${{ inputs.with-totals }}        # ${11}
+    - ${{ inputs.totals-only }}        # ${12}
+    - ${{ inputs.headers }}            # ${13}
+    - ${{ inputs.table-headers }}      # ${14}
+    - ${{ inputs.formatter }}          # ${15}
+    - ${{ inputs.github-token }}       # ${16}
+    - ${{ inputs.verbose }}            # ${17}

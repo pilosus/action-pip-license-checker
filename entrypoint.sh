@@ -72,26 +72,34 @@ if [ ! -z "${9}" ] ; then
 fi
 
 if [ ! -z "${10}" ] ; then
-  cmd="${cmd} --with-totals"
+  cmd="${cmd} --totals"
 fi
 
 if [ ! -z "${11}" ] ; then
-  cmd="${cmd} --totals-only"
+  cmd="${cmd} --with-totals"
 fi
 
 if [ ! -z "${12}" ] ; then
-  cmd="${cmd} --table-headers"
+  cmd="${cmd} --totals-only"
 fi
 
 if [ ! -z "${13}" ] ; then
-  cmd="${cmd} --formatter '${13}'"
+  cmd="${cmd} --headers"
 fi
 
 if [ ! -z "${14}" ] ; then
-  cmd="${cmd} --github-token '${14}'"
+  cmd="${cmd} --table-headers"
 fi
 
 if [ ! -z "${15}" ] ; then
+  cmd="${cmd} --formatter '${15}'"
+fi
+
+if [ ! -z "${16}" ] ; then
+  cmd="${cmd} --github-token '${16}'"
+fi
+
+if [ ! -z "${17}" ] ; then
   cmd="${cmd} --verbose"
 fi
 
