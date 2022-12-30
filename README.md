@@ -45,7 +45,7 @@ jobs:
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
-        exclude: 'pylint.*'
+        exclude: '(?i)^(pylint|aio[-_]*).*'
     - name: Print report
       if: ${{ always() }}
       run: echo "${{ steps.license_check_report.outputs.report }}"
@@ -202,10 +202,6 @@ Include pre-release and development versions.
 
 Print totals for license types found. Totals appended after the detailed list of the packages.
 
-### [DEPRECATED] `with-totals`
-
-Use `totals` instead.
-
 ### `totals-only`
 
 Print only totals for license types found, do not include the detailed list of the packages checked.
@@ -213,10 +209,6 @@ Print only totals for license types found, do not include the detailed list of t
 ### `headers`
 
 Print table headers for detailed list of the packages.
-
-### [DEPRECATED] `table-headers`
-
-Use `headers` instead.
 
 ### `formatter`
 
