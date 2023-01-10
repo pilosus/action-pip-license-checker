@@ -7,6 +7,10 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Fixed
 - Nothing here yet
 
+## [v0.8.0] - 2023-01-10
+### Changed
+- Used `pip-license-checker` version [0.42.0](https://github.com/pilosus/pip-license-checker/blob/main/CHANGELOG.md)
+
 ## [v0.8.0-rc1] - 2022-12-30
 ### Changed
 - Used `pip-license-checker` version `0.42.0-SNAPSHOT` to migrate over
@@ -108,17 +112,18 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/pip-license-checker/compare/v0.8.0-rc1...HEAD
-[v0.8.0-rc1]: https://github.com/pilosus/pip-license-checker/compare/v0.8.0-rc1...v0.7.1
-[v0.7.1]: https://github.com/pilosus/pip-license-checker/compare/v0.7.0...v0.7.1
-[v0.7.0]: https://github.com/pilosus/pip-license-checker/compare/v0.6.3...v0.7.0
-[v0.6.3]: https://github.com/pilosus/pip-license-checker/compare/v0.6.2...v0.6.3
-[v0.6.2]: https://github.com/pilosus/pip-license-checker/compare/v0.6.1...v0.6.2
-[v0.6.1]: https://github.com/pilosus/pip-license-checker/compare/v0.6.0...v0.6.1
-[v0.6.0]: https://github.com/pilosus/pip-license-checker/compare/v0.5.0...v0.6.0
-[v0.5.0]: https://github.com/pilosus/pip-license-checker/compare/v0.4.0...v0.5.0
-[v0.4.0]: https://github.com/pilosus/pip-license-checker/compare/v0.3.0...v0.4.0
-[v0.3.0]: https://github.com/pilosus/pip-license-checker/compare/v0.2.0...v0.3.0
-[v0.2.0]: https://github.com/pilosus/pip-license-checker/compare/v0.1.2...v0.2.0
-[v0.1.2]: https://github.com/pilosus/pip-license-checker/compare/v0.1.1...v0.1.2
-[v0.1.1]: https://github.com/pilosus/pip-license-checker/compare/v0.1.0...v0.1.1
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0...HEAD
+[v0.8.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0-rc1...v0.8.0
+[v0.8.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.7.1...v0.8.0-rc1
+[v0.7.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.7.0...v0.7.1
+[v0.7.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.6.3...v0.7.0
+[v0.6.3]: https://github.com/pilosus/action-pip-license-checker/compare/v0.6.2...v0.6.3
+[v0.6.2]: https://github.com/pilosus/action-pip-license-checker/compare/v0.6.1...v0.6.2
+[v0.6.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.6.0...v0.6.1
+[v0.6.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.5.0...v0.6.0
+[v0.5.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.4.0...v0.5.0
+[v0.4.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.3.0...v0.4.0
+[v0.3.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.2.0...v0.3.0
+[v0.2.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.1.2...v0.2.0
+[v0.1.2]: https://github.com/pilosus/action-pip-license-checker/compare/v0.1.1...v0.1.2
+[v0.1.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.1.0...v0.1.1
