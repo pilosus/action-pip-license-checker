@@ -1,4 +1,4 @@
-FROM pilosus/pip-license-checker:0.42.0
+FROM pilosus/pip-license-checker:0.42.1
 
 # Base image uses unpriviledged user
 # But we need root to install bash and access files
