@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 This change log follows the conventions of [keepachangelog.com](http://keepachangelog.com/).
 
 ## [Unreleased]
+
+## [v0.8.1] - 2023-01-16
 ### Fixed
-- Nothing here yet
+- Addressed a bug with Python package version parsing for
+  PEP517-non-compliant packages by bumping `pip-license-checker`
+  version to
+  [0.42.1](https://github.com/pilosus/pip-license-checker/blob/main/CHANGELOG.md)
 
 ## [v0.8.0] - 2023-01-10
 ### Changed
@@ -112,7 +117,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.1...HEAD
+[v0.8.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0-rc1...v0.8.0
 [v0.8.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.7.1...v0.8.0-rc1
 [v0.7.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.7.0...v0.7.1
