@@ -16,6 +16,30 @@ function parse_list_to_array () {
   echo "$accumulator"
 }
 
+function verbosity_level_to_string () {
+  # trim whitespaces, lowercase
+  lower=$( echo "$1" | xargs | tr '[:upper:]' '[:lower:]' )
+
+  # try to match true/false for old way of specifiying verbose option
+  # try to match integer for new way of specifying verbosity level
+  case $lower in
+    true | yes)
+      level=1
+      ;;
+    false | no)
+      level=0
+      ;;
+    *)
+      level=$(( ${lower} ))
+  esac
+
+  accumulator=""
+  for i in $(seq ${level})
+  do
+    accumulator="${accumulator}v"
+  done
+  echo "-${accumulator}"
+}
 
 #
 # Consts
@@ -100,7 +124,8 @@ if [ ! -z "${16}" ] ; then
 fi
 
 if [ ! -z "${17}" ] ; then
-  cmd="${cmd} --verbose"
+  result_17=$(verbosity_level_to_string "${17}")
+  cmd="${cmd} ${result_17}"
 fi
 
 if [ -z "${1}" ] && [ -z "${2}" ] ; then

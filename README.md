@@ -71,7 +71,7 @@ jobs:
         exclude: 'your-company-name.*'
         exclude-license: '(?i)copyright'
         totals: true
-        verbose: true
+        verbose: 1
         github-token: ${{ secrets.OAUTH_TOKEN_GITHUB }}
         ...
 ```
@@ -221,8 +221,14 @@ API. Recommended to keep a token as a GitHub secret.
 
 ### `verbose`
 
-Make output verbose for exceptions visibility. `Misc` column is added
-to a report for errors output.
+Output verbosity level:
+
+- 0 (or `false`, default) - no verbosity
+- 1 (or `true`) - errors only
+- 2 - errors, info
+- 3 - errors, info, debug
+
+Levels 1 and higher add a `Misc` column to a report table.
 
 ## Outputs
 
