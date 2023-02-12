@@ -5,6 +5,12 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v0.9.0-rc2] - 2023-02-12
+
+### Changed
+- Input field `with-totals` deprecated, use `totals` instead.
+- Input field `table-headers` deprecated, use `headers` instead.
+
 ## [v0.9.0-rc1] - 2023-02-11
 
 ### Changed
@@ -140,7 +146,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc1...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc2...HEAD
+[v0.9.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc1...v0.9.0-rc2
 [v0.9.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.1...v0.9.0-rc1
 [v0.8.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0-rc1...v0.8.0
