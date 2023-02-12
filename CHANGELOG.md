@@ -5,6 +5,29 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v0.9.0-rc1] - 2023-02-11
+
+### Changed
+- Used `pip-license-checker` version [0.43.0](https://github.com/pilosus/pip-license-checker/blob/main/CHANGELOG.md)
+
+### Added
+- Input field `verbose` supports integer values: `0` (non-verbose),
+  `1` (errors), `2` (errors, info), `3` (errors, info, debug) that
+  correspond to a upstream's
+  [pip-license-checker](https://github.com/pilosus/pip-license-checker)
+  cumulative `-v` option.
+
+### Fixed
+- Yanked versions of native Python packages are now checked in case of
+  [exact version
+  matching](https://peps.python.org/pep-0440/#version-matching) or
+  [arbitrary
+  equality](https://peps.python.org/pep-0440/#arbitrary-equality)
+  [#125](https://github.com/pilosus/pip-license-checker/issues/125)
+- Bug with pre-release versions resolution for native Python packages
+  fixed
+  [#126](https://github.com/pilosus/pip-license-checker/issues/126)
+
 ## [v0.8.1] - 2023-01-16
 ### Fixed
 - Addressed a bug with Python package version parsing for
@@ -117,7 +140,8 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.1...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc1...HEAD
+[v0.9.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.1...v0.9.0-rc1
 [v0.8.1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0...v0.8.1
 [v0.8.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.8.0-rc1...v0.8.0
 [v0.8.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.7.1...v0.8.0-rc1
