@@ -1,5 +1,7 @@
 # GitHub Action for detecting license names and types
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/pilosus/action-pip-license-checker?label=latest%20stable%20version)
+
 Detect license names and types for Python PyPI packages. Identify
 license types for given license names obtained by third-party
 tools. Great coverage of free/libre and open source licenses of all
