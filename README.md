@@ -1,5 +1,7 @@
 # GitHub Action for detecting license names and types
 
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/pilosus/action-pip-license-checker?label=latest%20stable%20version)
+
 Detect license names and types for Python PyPI packages. Identify
 license types for given license names obtained by third-party
 tools. Great coverage of free/libre and open source licenses of all
@@ -41,7 +43,7 @@ jobs:
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.8.1
+      uses: pilosus/action-pip-license-checker@v0.9.0
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -61,7 +63,7 @@ jobs:
     ...
     - name: Check license-checker CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.8.1
+      uses: pilosus/action-pip-license-checker@v0.9.0
       with:
         external: 'npm-license-checker.csv'
         external-format: 'csv'
@@ -86,7 +88,7 @@ jobs:
     ...
     - name: Check gradle-license-plugin JSON file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.8.1
+      uses: pilosus/action-pip-license-checker@v0.9.0
       with:
         external: 'gradle-license-plugin.json'
         external-format: 'gradle'
@@ -108,7 +110,7 @@ jobs:
     ...
     - name: Check cocoapods-acknowledgements Plist file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.8.1
+      uses: pilosus/action-pip-license-checker@v0.9.0
       with:
         external: 'cocoapods-acknowledgements.plist'
         external-format: 'cocoapods'
