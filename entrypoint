@@ -20,8 +20,10 @@
   (let [s (-> input
               name
               str/upper-case)
-        env (format "INPUT_%s" s)]
-    (System/getenv env)))
+        env (format "INPUT_%s" s)
+        value (System/getenv env)
+        result (if (str/blank? value) nil value)]
+    result))
 
 (defn get-action-debug
   "Is action running in debug mode?"
