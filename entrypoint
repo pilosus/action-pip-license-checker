@@ -1,0 +1,164 @@
+#!/usr/bin/env bb
+
+(ns entrypoint
+  (:require
+   [clojure.string :as str]
+   [babashka.fs :as fs]
+   [babashka.process :refer [shell]]))
+
+;; aux fns
+
+(defn get-opt-name
+  "Conver input field keyword to string option name"
+  [input]
+  (-> input
+      name))
+
+(defn get-env
+  "Get environment variable value for input keyword"
+  [input]
+  (let [s (-> input
+              name
+              str/upper-case)
+        env (format "INPUT_%s" s)]
+    (System/getenv env)))
+
+(defn get-action-debug
+  "Is action running in debug mode?"
+  []
+  (System/getenv "ACTION_DEBUG"))
+
+(defn get-workspace-path
+  "Get workdir on a GHA runner mounted as a volume to action container"
+  []
+  (or (System/getenv "GITHUB_WORKSPACE")
+      "/github/workspace"))
+
+(defn get-command-base
+  "Get action entrypoint base command.
+  Env mostly used for testing purposes:
+  ACTION_ENTRYPOINT='java -jar /local/path/to/custom.jar' ./entrypoint ..."
+  []
+  (or (System/getenv "ACTION_ENTRYPOINT")
+      "java -jar /usr/src/app/app.jar"))
+
+(defn format-opt
+  "Convert internal option name to external CLI option"
+  ([opt]
+   (format "--%s" opt))
+  ([opt value]
+   (format "--%s '%s'" opt value)))
+
+;; input values parsing fns
+
+(defn parse-list-path
+  "Parse option with array of comma-separated filenames"
+  [opt value]
+  (let [base-path (get-workspace-path)
+        values (-> value (str/split #","))
+        result (->> values
+                    (map #(fs/path base-path %))
+                    (map #(format-opt opt %))
+                    (str/join " "))]
+    result))
+
+(defn parse-list-opt
+  "Parse option with array value (string with comma-separated values).
+  E.g. fail: 'NetworkCopyleft,Error' => --fail 'NetworkCopyleft' --fail 'Error'"
+  [opt value]
+  (let [values (-> value (str/split #","))
+        result (->> values
+                    (map #(format-opt opt %))
+                    (str/join " "))]
+    result))
+
+(defn parse-boolean-flag
+  "Parse boolean flag options (no value, only option name available).
+  E.g. pre: true => --pre"
+  [opt _]
+  (format-opt opt))
+
+(defn parse-key-val-opt
+  "Parse standard option flags with simple string values.
+  E.g. external: 'deps.plist' => --external 'deps.plist'"
+  [opt value]
+  (format-opt opt value))
+
+(defn parse-boolean-accumulator
+  "Parse boolean flag option with optional accumulation.
+  Valid values: ((true|false|yes|no)|[0..9]+)"
+  [opt value]
+  (let [level (cond
+                (contains? #{"false" "no"} value) 0
+                (contains? #{"true" "yes"} value) 1
+                :else (Integer/parseInt value))
+        repeated (repeat level (format-opt opt))
+        result (str/join " " repeated)]
+    result))
+
+;; inputs mapping
+
+;; FIXME use declare for parsing fns forward declaration;
+;; move map to the top
+;; `declare` doesn't seem to be working properly in babashka, throws:
+;; java.lang.IllegalStateException
+;; Message:  Attempting to call unbound fn: [..]
+
+(def inputs
+  "Input fields to parsing functions mapping.
+  Assume input field names matches license checker's CLI options"
+  {:requirements parse-list-path
+   :external parse-list-path
+   :external-format parse-key-val-opt
+   :external-options parse-key-val-opt
+   :fail parse-list-opt
+   :fails-only parse-boolean-flag
+   :exclude parse-key-val-opt
+   :exclude-license parse-key-val-opt
+   :pre parse-boolean-flag
+   :totals parse-boolean-flag
+   :with-totals parse-boolean-flag
+   :totals-only parse-boolean-flag
+   :headers parse-boolean-flag
+   :table-headers parse-boolean-flag
+   :formatter parse-key-val-opt
+   :github-token parse-key-val-opt
+   :verbose parse-boolean-accumulator})
+
+;; generate external command options
+
+(defn generate-option
+  "Generate option string for external program by input field and its value"
+  [[input value]]
+  (let [parse-fn (get inputs input)
+        opt (get-opt-name input)]
+    (parse-fn opt value)))
+
+(defn get-command-opts
+  "Generate command with all arguments and options"
+  []
+  (let [input-to-value (->> inputs
+                            keys
+                            (map get-env)
+                            (zipmap (keys inputs))
+                            (remove (fn [[_ value]] (nil? value))))
+        external-opts (->>
+                       input-to-value
+                       (map generate-option)
+                       (str/join " "))]
+    external-opts))
+
+(defn exec!
+  "Run external command with all arguments and options passed into the action"
+  []
+  (let [cmd (format "%s %s" (get-command-base) (get-command-opts))
+        _ (when (get-action-debug) (println (format "Running: %s" cmd)))
+        ;; invoked command prints to stdout on its own,
+        ;; no need to print explicitly
+        ;; disable throwing non-zero exit codes from shell
+        ;; to suppress stacktraces
+        proc (shell {:continue true} cmd)]
+    (System/exit (:exit proc))))
+
+(when (= *file* (System/getProperty "babashka.file"))
+  (exec!))

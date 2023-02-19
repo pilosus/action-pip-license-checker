@@ -1,11 +1,13 @@
 FROM pilosus/pip-license-checker:0.43.0
 
 # Base image uses unpriviledged user
-# But we need root to install bash and access files
+# But we need root to install packages and access files
 # mounted by GitHub to the root-owned directories
 USER root
-RUN apk add --no-cache bash
 
-COPY --chown=1000:1000 entrypoint.sh /usr/src/app/
+# Recommended way to install babashka on Alpine is by getting a static linux binary
+RUN wget -qO- https://github.com/babashka/babashka/releases/download/v1.1.173/babashka-1.1.173-linux-amd64-static.tar.gz | tar xzv -C /bin
 
-ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+COPY --chown=1000:1000 entrypoint /usr/src/app/
+
+ENTRYPOINT ["/usr/src/app/entrypoint"]
