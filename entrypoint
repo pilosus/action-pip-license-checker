@@ -44,6 +44,20 @@
   (or (System/getenv "ACTION_ENTRYPOINT")
       "java -jar /usr/src/app/app.jar"))
 
+(defn get-output-path
+  "Get path to append output"
+  []
+  (System/getenv "GITHUB_OUTPUT"))
+
+(defn output-append!
+  "Append multiline string to action output or print to stdout in debug mode"
+  [s]
+  (let [path (get-output-path)
+        lines ["report<<EOF" s "EOF"]]
+    (if (get-action-debug)
+      (println s)
+      (fs/write-lines path lines {:append true}))))
+
 (defn format-opt
   "Convert internal option name to external CLI option"
   ([opt]
@@ -159,7 +173,8 @@
         ;; no need to print explicitly
         ;; disable throwing non-zero exit codes from shell
         ;; to suppress stacktraces
-        proc (shell {:continue true} cmd)]
+        proc (shell {:continue true :out :string} cmd)]
+    (output-append! (:out proc))
     (System/exit (:exit proc))))
 
 (when (= *file* (System/getProperty "babashka.file"))
