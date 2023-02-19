@@ -53,9 +53,10 @@
   "Append multiline string to action output or print to stdout in debug mode"
   [s]
   (let [path (get-output-path)
-        lines ["report<<EOF" s "EOF"]]
+        output (str/trim s)
+        lines ["report<<EOF" output "EOF"]]
     (if (get-action-debug)
-      (println s)
+      (println output)
       (fs/write-lines path lines {:append true}))))
 
 (defn format-opt
