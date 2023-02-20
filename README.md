@@ -238,6 +238,10 @@ Levels 1 and higher add a `Misc` column to a report table.
 
 Formatted plain text representation of the license check.
 
+## Contributing
+
+See [Contributing guide](https://github.com/pilosus/action-pip-license-checker/blob/main/CONTRIBUTING.md).
+
 ## Disclaimer
 
 Software is provided on an "as-is" basis and makes no warranties
