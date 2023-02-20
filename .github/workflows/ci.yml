@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+*'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v3.3.0
+        with:
+          fetch-depth: 0
+      - name: Setup babashka
+        uses: DeLaGuardo/setup-clojure@10.1
+        with:
+          bb: 1.1.173
+      - name: Run tests
+        run: bb test_runner.clj
