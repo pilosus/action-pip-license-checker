@@ -105,42 +105,42 @@
   "Parse boolean flag option with optional accumulation.
   Valid values: ((true|false|yes|no)|[0..9]+)"
   [opt value]
-  (let [level (cond
-                (contains? #{"false" "no"} value) 0
-                (contains? #{"true" "yes"} value) 1
-                :else (Integer/parseInt value))
+  (let [s (-> value str/lower-case str/trim)
+        level (cond
+                (contains? #{"false" "no"} s) 0
+                (contains? #{"true" "yes"} s) 1
+                :else (Integer/parseInt s))
         repeated (repeat level (format-opt opt))
         result (str/join " " repeated)]
     result))
 
 ;; inputs mapping
 
-;; FIXME use declare for parsing fns forward declaration;
-;; move map to the top
-;; `declare` doesn't seem to be working properly in babashka, throws:
-;; java.lang.IllegalStateException
-;; Message:  Attempting to call unbound fn: [..]
-
 (def inputs
-  "Input fields to parsing functions mapping.
-  Assume input field names matches license checker's CLI options"
-  {:requirements parse-list-path
-   :external parse-list-path
-   :external-format parse-key-val-opt
-   :external-options parse-key-val-opt
-   :fail parse-list-opt
-   :fails-only parse-boolean-flag
-   :exclude parse-key-val-opt
-   :exclude-license parse-key-val-opt
-   :pre parse-boolean-flag
-   :totals parse-boolean-flag
-   :with-totals parse-boolean-flag
-   :totals-only parse-boolean-flag
-   :headers parse-boolean-flag
-   :table-headers parse-boolean-flag
-   :formatter parse-key-val-opt
-   :github-token parse-key-val-opt
-   :verbose parse-boolean-accumulator})
+  "Ordered array-map of input fields to parsing functions mapping.
+
+  NB! Assume input field names match external program's CLI options."
+  (apply
+   array-map
+   (sequence
+    cat
+    [[:requirements parse-list-path]
+     [:external parse-list-path]
+     [:external-format parse-key-val-opt]
+     [:external-options parse-key-val-opt]
+     [:fail parse-list-opt]
+     [:fails-only parse-boolean-flag]
+     [:exclude parse-key-val-opt]
+     [:exclude-license parse-key-val-opt]
+     [:pre parse-boolean-flag]
+     [:totals parse-boolean-flag]
+     [:with-totals parse-boolean-flag]
+     [:totals-only parse-boolean-flag]
+     [:headers parse-boolean-flag]
+     [:table-headers parse-boolean-flag]
+     [:formatter parse-key-val-opt]
+     [:github-token parse-key-val-opt]
+     [:verbose parse-boolean-accumulator]])))
 
 ;; generate external command options
 
@@ -154,15 +154,17 @@
 (defn get-command-opts
   "Generate command with all arguments and options"
   []
-  (let [input-to-value (->> inputs
-                            keys
-                            (map get-env)
-                            (zipmap (keys inputs))
-                            (remove (fn [[_ value]] (nil? value))))
-        external-opts (->>
-                       input-to-value
-                       (map generate-option)
-                       (str/join " "))]
+  (let [input-to-value
+        (->> inputs
+             keys
+             (map get-env)
+             (map vector (keys inputs)) ;; like zipmap but with order preserved
+             (remove (fn [[_ value]] (nil? value))))
+        external-opts
+        (->>
+         input-to-value
+         (map generate-option)
+         (str/join " "))]
     external-opts))
 
 (defn exec!
@@ -170,10 +172,6 @@
   []
   (let [cmd (format "%s %s" (get-command-base) (get-command-opts))
         _ (when (get-action-debug) (println (format "Running: %s" cmd)))
-        ;; invoked command prints to stdout on its own,
-        ;; no need to print explicitly
-        ;; disable throwing non-zero exit codes from shell
-        ;; to suppress stacktraces
         proc (shell {:continue true :out :string} cmd)]
     (output-append! (:out proc))
     (System/exit (:exit proc))))
