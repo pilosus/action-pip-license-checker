@@ -8,57 +8,40 @@ branding:
 inputs:
   requirements:
     description: 'Path to requirements file(s)'
-    required: false
   external:
     description: 'Path to CSV file(s) in format: `package_name,license_name[,...]`'
-    required: false
   external-format:
     description: 'External file format: csv, cocoapods, gradle'
-    required: false
   external-options:
     description: 'String of options map in EDN format'
-    required: false
   fail:
     description: 'Return non-zero exit code if specified license type(s) found'
-    required: false
   fails-only:
     description: 'Print only packages of license types specified with `fail` input.'
-    required: false
   exclude:
     description: 'PCRE to exclude matching packages'
-    required: false
   exclude-license:
     description: 'PCRE to exclude packages with matching license names'
-    required: false
   pre:
     description: 'Include pre-release and development versions'
-    required: false
   totals:
     description: 'Print totals for license types'
-    required: false
   with-totals:
     description: 'Print totals for license types'
-    required: false
     deprecationMessage: 'Use `totals`'
   totals-only:
     description: 'Print only totals for license types'
-    required: false
   headers:
     description: 'Print report headers'
-    required: false
   table-headers:
     description: 'Print table headers'
-    required: false
     deprecationMessage: 'Use `headers`'
   formatter:
     description: 'Printf-style formatter string for report formatting'
-    required: false
   github-token:
     description: 'GitHub OAuth Token to increase rate-limits'
-    required: false
   verbose:
     description: 'Make output verbose'
-    required: false
 outputs:
   report:
     description: 'License check report'
