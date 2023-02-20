@@ -1,1 +1,2 @@
-{:paths ["." "test"]}
+{:paths ["." "test"]
+ :tasks {test (shell "bb test_runner.clj")}}

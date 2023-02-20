@@ -27,4 +27,4 @@ jobs:
         with:
           bb: 1.1.173
       - name: Run tests
-        run: bb test_runner.clj
+        run: bb test
