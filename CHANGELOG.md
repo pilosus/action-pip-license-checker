@@ -5,6 +5,17 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v1.0.0] - 2023-02-25
+
+No breaking changes are expected. Major version increase is mostly to
+get out of the [0-based Versioning](https://0ver.org/) vicious
+circle. It's also to state the fact that the action has reached
+certain level of maturity and used by many repos.
+
+See changelog for:
+- [v1.0.0-rc1]
+- [v1.0.0-rc2]
+
 ## [v1.0.0-rc2] - 2023-02-25
 
 ### Changed
@@ -22,7 +33,6 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 See changelog for:
 - [v0.9.0-rc1]
 - [v0.9.0-rc2]
-
 
 ## [v0.9.0-rc2] - 2023-02-12
 
@@ -165,7 +175,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...HEAD
+[v1.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...v1.0.0
 [v1.0.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc1...v1.0.0-rc2
 [v1.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0...v1.0.0-rc1
 [v0.9.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc2...v0.9.0
