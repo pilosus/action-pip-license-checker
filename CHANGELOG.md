@@ -5,6 +5,12 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v1.0.0-rc2] - 2023-02-25
+
+### Changed
+
+- Used `pip-license-checker` version [0.44.0](https://github.com/pilosus/pip-license-checker/blob/main/CHANGELOG.md): no breaking changes, bugfixes only
+
 ## [v1.0.0-rc1] - 2023-02-20
 
 ### Changed
@@ -159,7 +165,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc1...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...HEAD
+[v1.0.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc1...v1.0.0-rc2
 [v1.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0...v1.0.0-rc1
 [v0.9.0]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc2...v0.9.0
 [v0.9.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0-rc1...v0.9.0-rc2
