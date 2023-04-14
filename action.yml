@@ -36,6 +36,8 @@ inputs:
   table-headers:
     description: 'Print table headers'
     deprecationMessage: 'Use `headers`'
+  report-format:
+    description: 'Report format: stdout, json, json-pretty, csv'
   formatter:
     description: 'Printf-style formatter string for report formatting'
   github-token:
@@ -63,6 +65,7 @@ runs:
     - ${{ inputs.totals-only }}        # ${12}
     - ${{ inputs.headers }}            # ${13}
     - ${{ inputs.table-headers }}      # ${14}
-    - ${{ inputs.formatter }}          # ${15}
-    - ${{ inputs.github-token }}       # ${16}
-    - ${{ inputs.verbose }}            # ${17}
+    - ${{ inputs.report-format }}      # ${15}
+    - ${{ inputs.formatter }}          # ${16}
+    - ${{ inputs.github-token }}       # ${17}
+    - ${{ inputs.verbose }}            # ${18}

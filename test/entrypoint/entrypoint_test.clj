@@ -38,6 +38,10 @@
     "whatever,value,does,not,matter"
     "--totals"
     "Boolean flag opt any value"]
+   [:report-format
+    "json-pretty"
+    "--report-format 'json-pretty'"
+    "Report formatting option"]
    [:verbose
     "true"
     "--verbose"

@@ -43,7 +43,7 @@ jobs:
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -63,7 +63,7 @@ jobs:
     ...
     - name: Check license-checker CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'npm-license-checker.csv'
         external-format: 'csv'
@@ -88,7 +88,7 @@ jobs:
     ...
     - name: Check gradle-license-plugin JSON file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'gradle-license-plugin.json'
         external-format: 'gradle'
@@ -110,7 +110,7 @@ jobs:
     ...
     - name: Check cocoapods-acknowledgements Plist file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'cocoapods-acknowledgements.plist'
         external-format: 'cocoapods'
@@ -212,6 +212,10 @@ Print only totals for license types found, do not include the detailed list of t
 
 Print table headers for detailed list of the packages.
 
+### `report-format`
+
+Report format: `stdout` (default), `json`, `json-pretty`, `csv`.
+
 ### `formatter`
 
 Printf-style formatter string for report formatting. Default value is `%-35s %-55s %-30s`.
@@ -236,7 +240,7 @@ Levels 1 and higher add a `Misc` column to a report table.
 
 ### `report`
 
-Formatted plain text representation of the license check.
+License check report.
 
 ## Contributing
 

@@ -5,6 +5,33 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v2.0.0] - 2023-04-14
+
+Release **breaks backward compatibility** by adding a mandatory `Misc`
+column to the reports no matter the verbosity level. See `Changed`
+sections for more details.
+
+### Changed
+- `Misc` column no longer depends on the verbosity level and is always
+  shown. For `stdout` reports (default format) visibility of the
+  column can be suppresed via custom `formatter` (e.g. `%s %s %s` to
+  show only first three columns)
+- Default `formatter` option spans 4 columns (`Dependency`, `License
+  name`, `License type`, `Misc`) and equals to `%-35s %-55s %-20s
+  %-40s`.
+- `totals` report formatting assumes that the first two columns
+  delimited with the same separator; the first separator is used (by
+  default a single space)
+
+### Added
+- Report output input field `report-format` to support `stdout`
+  (default tabular report printed to the standard output), `json`,
+  `json-pretty` and `csv` formats
+
+### Fixed
+- Address the bug with supporting `BigInteger` in epoch, major, minor,
+  and patch parts of the Python-native package versions
+
 ## [v1.0.0] - 2023-02-25
 
 No breaking changes are expected. Major version increase is mostly to
@@ -175,7 +202,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v2.0.0...HEAD
+[v2.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...v1.0.0
 [v1.0.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc1...v1.0.0-rc2
 [v1.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v0.9.0...v1.0.0-rc1
