@@ -43,7 +43,7 @@ jobs:
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -63,7 +63,7 @@ jobs:
     ...
     - name: Check license-checker CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'npm-license-checker.csv'
         external-format: 'csv'
@@ -88,7 +88,7 @@ jobs:
     ...
     - name: Check gradle-license-plugin JSON file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'gradle-license-plugin.json'
         external-format: 'gradle'
@@ -110,7 +110,7 @@ jobs:
     ...
     - name: Check cocoapods-acknowledgements Plist file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v0.9.0
+      uses: pilosus/action-pip-license-checker@v2
       with:
         external: 'cocoapods-acknowledgements.plist'
         external-format: 'cocoapods'
@@ -122,6 +122,46 @@ jobs:
         ...
 ```
 
+### Generate a report as a downloadable file
+
+By using the `report-format` input field and a third-party
+[actions/upload-artifact](https://github.com/actions/upload-artifact)
+action you can save the report as a file and download it. In the
+following example the license check report is generated in
+`json-pretty` format and saved as a GitHub workflow artifact:
+
+```yaml
+jobs:
+  license_check:
+    runs-on: ubuntu-latest
+    steps:
+    ...
+      - name: Check licenses
+        id: license_check_report
+        uses: pilosus/action-pip-license-checker@5b5956a1093c68ebac6ff53c8427790d04ee5c26
+        with:
+          external: 'licenses.csv'
+          external-format: 'csv'
+          external-options: '{:skip-header false :package-column-index 0 :license-column-index 2}'
+          report-format: 'json-pretty'
+          formatter: '%-65s %-65s %-20s %-40s'
+          totals: true
+          headers: true
+          fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
+          verbose: 1
+      - name: Save report
+        if: ${{ always() }}
+        run: echo "${{ steps.license_check_report.outputs.report }}" > license-report.json
+      - name: Upload artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: license-report
+          path: license-report.json
+```
+
+Then the report can be downloaded as an [archived
+artifact](https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts).
 
 ### Supported file formats and their options
 
@@ -212,6 +252,10 @@ Print only totals for license types found, do not include the detailed list of t
 
 Print table headers for detailed list of the packages.
 
+### `report-format`
+
+Report format: `stdout` (default), `json`, `json-pretty`, `csv`.
+
 ### `formatter`
 
 Printf-style formatter string for report formatting. Default value is `%-35s %-55s %-30s`.
@@ -236,7 +280,7 @@ Levels 1 and higher add a `Misc` column to a report table.
 
 ### `report`
 
-Formatted plain text representation of the license check.
+License check report.
 
 ## Contributing
 

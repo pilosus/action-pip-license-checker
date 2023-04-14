@@ -138,6 +138,7 @@
      [:totals-only parse-boolean-flag]
      [:headers parse-boolean-flag]
      [:table-headers parse-boolean-flag]
+     [:report-format parse-key-val-opt]
      [:formatter parse-key-val-opt]
      [:github-token parse-key-val-opt]
      [:verbose parse-boolean-accumulator]])))
