@@ -33,7 +33,7 @@ $ bb test
 
 6. Make sure GitHub Checks (Actions) pass.
 
-### Release managements
+### Release management
 
 1. Follow the [SemVer](https://semver.org/) conventions for the release number.
 2. Update the [CHANGELOG](https://github.com/pilosus/action-pip-license-checker/blob/main/CHANGELOG.md).
