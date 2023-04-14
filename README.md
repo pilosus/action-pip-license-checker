@@ -122,6 +122,46 @@ jobs:
         ...
 ```
 
+### Generate a report as a downloadable file
+
+By using the `report-format` input field and a third-party
+[actions/upload-artifact](https://github.com/actions/upload-artifact)
+action you can save the report as a file and download it. In the
+following example the license check report is generated in
+`json-pretty` format and saved as a GitHub workflow artifact:
+
+```yaml
+jobs:
+  license_check:
+    runs-on: ubuntu-latest
+    steps:
+    ...
+      - name: Check licenses
+        id: license_check_report
+        uses: pilosus/action-pip-license-checker@5b5956a1093c68ebac6ff53c8427790d04ee5c26
+        with:
+          external: 'licenses.csv'
+          external-format: 'csv'
+          external-options: '{:skip-header false :package-column-index 0 :license-column-index 2}'
+          report-format: 'json-pretty'
+          formatter: '%-65s %-65s %-20s %-40s'
+          totals: true
+          headers: true
+          fail: 'StrongCopyleft,NetworkCopyleft,Other,Error'
+          verbose: 1
+      - name: Save report
+        if: ${{ always() }}
+        run: echo "${{ steps.license_check_report.outputs.report }}" > license-report.json
+      - name: Upload artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: license-report
+          path: license-report.json
+```
+
+Then the report can be downloaded as an [archived
+artifact](https://docs.github.com/en/actions/managing-workflow-runs/downloading-workflow-artifacts).
 
 ### Supported file formats and their options
 
