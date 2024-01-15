@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup babashka
-        uses: DeLaGuardo/setup-clojure@12.2
+        uses: DeLaGuardo/setup-clojure@12.3
         with:
           bb: 1.1.173
       - name: Run tests
