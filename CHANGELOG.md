@@ -5,6 +5,10 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v3.0.0] - 2025-07-22
+
+See release notes for v3.0.0-r1c
+
 ## [v3.0.0-rc1] - 2025-07-22
 
 While action API's backward compatibility is not broken, updated
@@ -214,7 +218,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0-rc1...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0...HEAD
+[v3.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0-rc1...v3.0.0
 [v3.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v2.0.0...v3.0.0-rc1
 [v2.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...v1.0.0
