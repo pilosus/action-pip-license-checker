@@ -5,6 +5,18 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v3.0.0-rc1] - 2025-07-22
+
+While action API's backward compatibility is not broken, updated
+upstream checker has changed it's logic of searching for the license
+identifiers.
+
+### Changed
+
+- When using PyPI JSON API's to get a license name, the checker tries
+  to read a SPDX license identifier from the `license_expr` first and
+  if not found, falls back to the `licese` field.
+
 ## [v2.0.0] - 2023-04-14
 
 Release **breaks backward compatibility** by adding a mandatory `Misc`
@@ -202,7 +214,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0-rc1...HEAD
+[v3.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v2.0.0...v3.0.0-rc1
 [v2.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...v2.0.0
 [v1.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc2...v1.0.0
 [v1.0.0-rc2]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0-rc1...v1.0.0-rc2
