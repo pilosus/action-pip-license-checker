@@ -30,20 +30,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout the code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - name: Setup Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.6'
+        python-version: '3.13'
     - name: Get explicit and transitive dependencies
       run: |
         pip install -r requirements.txt
         pip freeze > requirements-all.txt
     - name: Check python
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v2
+      uses: pilosus/action-pip-license-checker@v3
       with:
         requirements: 'requirements-all.txt'
         fail: 'Copyleft'
@@ -63,7 +63,7 @@ jobs:
     ...
     - name: Check license-checker CSV file without headers
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v2
+      uses: pilosus/action-pip-license-checker@v3
       with:
         external: 'npm-license-checker.csv'
         external-format: 'csv'
@@ -88,7 +88,7 @@ jobs:
     ...
     - name: Check gradle-license-plugin JSON file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v2
+      uses: pilosus/action-pip-license-checker@v3
       with:
         external: 'gradle-license-plugin.json'
         external-format: 'gradle'
@@ -110,7 +110,7 @@ jobs:
     ...
     - name: Check cocoapods-acknowledgements Plist file
       id: license_check_report
-      uses: pilosus/action-pip-license-checker@v2
+      uses: pilosus/action-pip-license-checker@v3
       with:
         external: 'cocoapods-acknowledgements.plist'
         external-format: 'cocoapods'
@@ -138,7 +138,7 @@ jobs:
     ...
       - name: Check licenses
         id: license_check_report
-        uses: pilosus/action-pip-license-checker@5b5956a1093c68ebac6ff53c8427790d04ee5c26
+        uses: pilosus/action-pip-license-checker@v3
         with:
           external: 'licenses.csv'
           external-format: 'csv'
@@ -154,7 +154,7 @@ jobs:
         run: echo "${{ steps.license_check_report.outputs.report }}" > license-report.json
       - name: Upload artifact
         if: ${{ always() }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: license-report
           path: license-report.json
