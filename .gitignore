@@ -7,8 +7,10 @@
 auto-save-list
 tramp
 .\#*
+.idea/
 
 # Org-mode
 .org-id-locations
 *_archive
 todo.org
+

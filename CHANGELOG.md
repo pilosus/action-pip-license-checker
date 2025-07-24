@@ -5,6 +5,12 @@ This change log follows the conventions of [keepachangelog.com](http://keepachan
 
 ## [Unreleased]
 
+## [v3.1.0] - 2025-07-24
+
+### Added
+
+- `PSF-2.0` license support
+
 ## [v3.0.0] - 2025-07-22
 
 See release notes for v3.0.0-r1c
@@ -218,7 +224,8 @@ See changelog for:
 ### Added
 - MVP
 
-[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/pilosus/action-pip-license-checker/compare/v3.1.0...HEAD
+[v3.1.0]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v3.0.0-rc1...v3.0.0
 [v3.0.0-rc1]: https://github.com/pilosus/action-pip-license-checker/compare/v2.0.0...v3.0.0-rc1
 [v2.0.0]: https://github.com/pilosus/action-pip-license-checker/compare/v1.0.0...v2.0.0
